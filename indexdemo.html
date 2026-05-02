@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Login</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    font-family: Arial;
+    background: #fffbe1;
+}
+
+/* GROUP WRAPPER (KEY FIX) */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* LOGIN BOX */
+.box {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 10px 15px 10px rgba(0,0,0,0.1);
+}
+
+/* IMAGE */
+.image {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    margin-top: 15px;
+}
+
+/* PARAGRAPH */
+p {
+    margin-top: 20px;
+    max-width: 400px;
+    font-size: 13px;
+    color: #707070;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="box">
+        <img src="image-removebg-preview (4).png" class="image">
+
+        <input type="text" id="studentId" placeholder="Student ID">
+        <input type="text" id="name" placeholder="Student Name">
+        <input type="text" id="section" placeholder="Section">
+        <input type="text" id="reason" placeholder="Reason">
+        <input type="text" id="phone" placeholder="Parent Phone">
+
+        <button onclick="saveData()">Submit</button>
+    </div>
+
+    <p>
+        This website is a replication of the “MediBuzz System,” designed to give students a preview of how the school clinic processes and saves student information.
+    </p>
+
+</div>
+
+<script>
+function saveData() {
+    const data = {
+        studentId: document.getElementById("studentId").value,
+        name: document.getElementById("name").value,
+        section: document.getElementById("section").value,
+        reason: document.getElementById("reason").value,
+        phone: document.getElementById("phone").value
+    };
+
+    let records = JSON.parse(localStorage.getItem("clinicRecords")) || [];
+    records.push(data);
+
+    localStorage.setItem("clinicRecords", JSON.stringify(records));
+
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
